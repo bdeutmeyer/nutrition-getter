@@ -1,0 +1,19 @@
+font-semibold {
+    font-weight: 600;
+}
+#header li {
+    display: inline;
+    padding: 120px;
+
+}
+
+@media screen and (max-width: 900px) {
+    .col {
+       width: 50%;
+    }
+ }
+ @media screen and (max-width: 600px) {
+    .col {
+       width: 100%;
+    }
+ }
