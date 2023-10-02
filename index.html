@@ -9,25 +9,24 @@
     <link rel="stylesheet" href="./assets/css/style.css">
 </head>
 <body>
-    <header id="header">
-        <h1 id="main-heading">
-
-        </h1>
+    <header id="header" class="bg-green-700">
+        <h1 id="main-heading" class="text-white text-center font-serif text-xl">-- Nutrition Getter --</h1>
         <nav id="navbar">
-            <ul id="navlist">
-                <li id="find-recipes"></li>
-                <li id="saved-recipes"></li>
-                <li id="home"></li>
+            <ul id="navlist" class="text-white text-justify bg-green-900 ">
+                <li id="find-recipes">Find Recipes</li>
+                <li id="saved-recipes">My Recipes</li>
+                <li id="home">Home</li>
             </ul>
         </nav>
     </header>
     <main id="main">
         <form id="search-form">
-            <input type="text" id="url-input">
-            <textarea name="ingredients-search" id="ingredients-search" cols="30" rows="10">
+            <input type="text" id="url-input" placeholder="Recipe URL" class="border-black border-2">
+            <label for="textarea" class="font-semibold">Type or paste ingredient list here</label>
+            <textarea name="ingredients-search" id="ingredients-search" cols="30" rows="10"  class="border-black border-2">
 
             </textarea>
-            <button id="search-btn">Submit</button>
+            <button id="search-btn" class="text-white bg-green-700 rounded py-2 px-6">Submit</button>
         </form>
         <section id="results">
             <section>

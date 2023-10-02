@@ -1,19 +1,26 @@
+
 var searchFormEl = document.getElementById('search-form');
 var searchUrlInputEl = document.querySelector("#url-input");
 var searchIngridientsEl = document.querySelector("#ingredients-search");
+
 var searchBtnEl = document.querySelector("#search-btn");
 var resultsContainerEl = document.querySelector("#results");
 var recipeListEl = document.querySelector("#recipe-list");
 
 function getApi() {
   var searchQueryUrl = searchUrlInputEl.value;
+
   var searchQueryIn = searchIngridientsEl.value;
+
 
   if (searchQueryIn || searchQueryUrl) {
     const url =
       "https://edamam-edamam-nutrition-analysis.p.rapidapi.com/api/nutrition-data?ingr=" +
       searchQueryIn +
       "&nutrition-type=cooking";
+
+    //   'https://edamam-edamam-nutrition-analysis.p.rapidapi.com/api/nutrition-data?ingr=%3CREQUIRED%3E&nutrition-type=cooking';
+
 
     const options = {
       method: "GET",
@@ -34,9 +41,15 @@ function getApi() {
       .then(function (data) {
         console.log(data);
         displayResults(data);
+
+        // displayResults(data);
+      })
+      .catch(function (error) {
+        console.error(error); 
       });
   }
 }
+
 
 function displayResults(data) {
   resultsContainerEl.innerHTML = '';
@@ -83,3 +96,4 @@ searchBtnEl.addEventListener('click', function (event) {
   event.preventDefault();
   getApi();
 });
+
