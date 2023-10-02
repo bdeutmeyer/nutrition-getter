@@ -9,24 +9,37 @@
     <link rel="stylesheet" href="./assets/css/style.css">
 </head>
 <body>
-    <header>
-        <h1>
+    <header id="header">
+        <h1 id="main-heading">
 
         </h1>
-        <nav>
-
+        <nav id="navbar">
+            <ul id="navlist">
+                <li id="find-recipes"></li>
+                <li id="saved-recipes"></li>
+                <li id="home"></li>
+            </ul>
         </nav>
     </header>
-    <main>
-        <form action="">
-            <input type="text">
-            <textarea name="" id="" cols="30" rows="10">
+    <main id="main">
+        <form id="search-form">
+            <input type="text" id="url-input">
+            <textarea name="ingredients-search" id="ingredients-search" cols="30" rows="10">
 
             </textarea>
-            <button>Submit</button>
+            <button id="search-btn">Submit</button>
         </form>
-    </main>
+        <section id="results">
+            <section>
 
+            </section>
+            <form id="recipe-list">
+                <button id="save-btn">
+
+                </button>
+            </form>
+        </section>
+    </main>
     <script src="./assets/js/script.js"></script>
 </body>
 </html>
