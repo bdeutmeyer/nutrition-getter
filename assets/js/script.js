@@ -1,26 +1,22 @@
-
 var searchFormEl = document.getElementById('search-form');
 var searchUrlInputEl = document.querySelector("#url-input");
 var searchIngridientsEl = document.querySelector("#ingredients-search");
-
 var searchBtnEl = document.querySelector("#search-btn");
 var resultsContainerEl = document.querySelector("#results");
 var recipeListEl = document.querySelector("#recipe-list");
 
-function getApi() {
-  var searchQueryUrl = searchUrlInputEl.value;
+//add on the text area box a placeholder that says 
+// "1 cup rice, 10 oz chickpeas", etc. Enter each ingredient on a new line."
 
+function getApi() {
   var searchQueryIn = searchIngridientsEl.value;
 
 
-  if (searchQueryIn || searchQueryUrl) {
+  if (searchQueryIn) {
     const url =
       "https://edamam-edamam-nutrition-analysis.p.rapidapi.com/api/nutrition-data?ingr=" +
       searchQueryIn +
       "&nutrition-type=cooking";
-
-    //   'https://edamam-edamam-nutrition-analysis.p.rapidapi.com/api/nutrition-data?ingr=%3CREQUIRED%3E&nutrition-type=cooking';
-
 
     const options = {
       method: "GET",
@@ -41,28 +37,58 @@ function getApi() {
       .then(function (data) {
         console.log(data);
         displayResults(data);
-
-        // displayResults(data);
       })
       .catch(function (error) {
         console.error(error); 
       });
   }
-}
 
+// <<< ------------ second api -------->>>>>
+  console.log(searchQueryIn)
+    if (searchQueryIn) {
+      const url =
+        "https://edamam-recipe-search.p.rapidapi.com/api/recipes/v2?type=public&q=" +
+        searchQueryIn;
+  
+      const options = {
+        method: "GET",
+        headers: {
+          "X-RapidAPI-Key": "2e845e8009mshc295949c74088fcp167a1djsn8494e03546dc",
+          "X-RapidAPI-Host": "edamam-recipe-search.p.rapidapi.com",
+        },
+      };
+  
+      fetch(url, options)
+        .then(function (response) {
+          if (response.ok) {
+            return response.json();
+          } else {
+            console.log("Response failed");
+          }
+        })
+        .then(function (data) {
+                  console.log(data);
+                  displayRecipes(data);
+                })
+                .catch(function (error) {
+                  console.error(error); 
+                });
+    }
+}
 
 function displayResults(data) {
   resultsContainerEl.innerHTML = '';
 
-  var calorieEl = data.calories;
-  var carbsEl = data.totalNutrients.CHOCDF;
-  var proteinEl = data.totalNutrients.PROCNT;
-  var fatEl = data.totalNutrients.FAT;
-  var sugarEl = data.totalNutrients.SUGAR;
-  var cholEl = data.totalNutrients.CHOLE;
-  var fiberEl = data.totalNutrients.FIBTG;
-  var sodiumEl = data.totalNutrients.NA;
+  var calorieEl = Math.floor(data.calories);
+  var carbsEl = Math.floor(data.totalNutrients.CHOCDF.quantity);
+  var proteinEl = Math.floor(data.totalNutrients.PROCNT.quantity);
+  var fatEl = Math.floor(data.totalNutrients.FAT.quantity);
+  var sugarEl = Math.floor(data.totalNutrients.SUGAR.quantity);
+  var cholEl = Math.floor(data.totalNutrients.CHOLE.quantity);
+  var fiberEl = Math.floor(data.totalNutrients.FIBTG.quantity);
+  var sodiumEl = Math.floor(data.totalNutrients.NA.quantity);
 
+  var displayMacros = document.createElement('strong');
   var displayCalorieEl = document.createElement('li');
   var displayCarbsEl = document.createElement('li');
   var displayProteinEl = document.createElement('li');
@@ -72,15 +98,17 @@ function displayResults(data) {
   var displayFiberEl = document.createElement('li');
   var displaySodiumEl = document.createElement('li');
 
-  displayCalorieEl.textContent = 'Calories: ' + calorieEl;
-  displayCarbsEl.textContent = 'Carbohydrates: ' + carbsEl;
-  displayProteinEl.textContent = 'Protein: ' + proteinEl;
-  displayFatEl.textContent = 'Fat: ' + fatEl;
-  displaySugarEl.textContent = 'Sugar: ' + sugarEl;
-  displayCholEl.textContent = 'Cholesterol: ' + cholEl;
-  displayFiberEl.textContent = 'Fiber: ' + fiberEl;
-  displaySodiumEl.textContent = 'Sodium: ' + sodiumEl;
+  displayMacros.textContent = 'Nutrition Facts';
+  displayCalorieEl.textContent = 'Calories: ' + calorieEl ;
+  displayCarbsEl.textContent = 'Carbohydrates: ' + carbsEl + 'mg';
+  displayProteinEl.textContent = 'Protein: ' + proteinEl + 'g';
+  displayFatEl.textContent = 'Fat: ' + fatEl + 'g';
+  displaySugarEl.textContent = 'Sugar: ' + sugarEl + 'g';
+  displayCholEl.textContent = 'Cholesterol: ' + cholEl + 'mg';
+  displayFiberEl.textContent = 'Fiber: ' + fiberEl + 'g';
+  displaySodiumEl.textContent = 'Sodium: ' + sodiumEl + 'mg';
 
+  resultsContainerEl.appendChild(displayMacros);
   resultsContainerEl.appendChild(displayCalorieEl);
   resultsContainerEl.appendChild(displayCarbsEl);
   resultsContainerEl.appendChild(displayProteinEl);
@@ -92,8 +120,23 @@ function displayResults(data) {
   console.log(resultsContainerEl);
 }
 
+function displayRecipes(data) {
+    recipeListEl.innerHTML = '';
+      
+        for (var i=0; i<5; i++) {
+          var label = data.hits[i].recipe.label;
+          var displayLabel = document.createElement('li');
+          displayLabel.textContent = label;
+          recipeListEl.appendChild(displayLabel);
+        }
+        
+      }
+
 searchBtnEl.addEventListener('click', function (event) {
   event.preventDefault();
   getApi();
 });
+
+
+
 
