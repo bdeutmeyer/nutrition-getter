@@ -146,9 +146,9 @@ function displayRecipes(data) {
     recipeCard.appendChild(displayCalories);    
 
     var recipeSource = data.hits[i].recipe.source;
-    var displaySource = document.createElement('p');
+    var displaySource = document.createElement('a');
     displaySource.textContent = recipeSource;
-    displaySource.setAttribute('html',data.hits[i].recipe.url)
+    displaySource.setAttribute('href',data.hits[i].recipe.url)
     recipeCard.appendChild(displaySource);  
 
     var saveBtn = document.createElement('button');
