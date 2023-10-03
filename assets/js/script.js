@@ -43,6 +43,7 @@ function getApi() {
       });
   }
 
+
 // <<< ------------ second api -------->>>>>
   console.log(searchQueryIn)
     if (searchQueryIn) {
@@ -120,17 +121,39 @@ function displayResults(data) {
   console.log(resultsContainerEl);
 }
 
+
+
 function displayRecipes(data) {
-    recipeListEl.innerHTML = '';
-      
-        for (var i=0; i<5; i++) {
-          var label = data.hits[i].recipe.label;
-          var displayLabel = document.createElement('li');
-          displayLabel.textContent = label;
-          recipeListEl.appendChild(displayLabel);
-        }
-        
-      }
+  for (var i=0; i<5; i++) {
+    var recipeCard = document.createElement('section');
+    recipeListEl.appendChild(recipeCard);
+
+    var recipeName = data.hits[i].recipe.label;
+    var displayName = document.createElement('h3');
+    displayName.textContent = recipeName;
+    recipeCard.appendChild(displayName);
+
+    var recipeCuisine = data.hits[i].recipe.cuisineType;
+    var displayCuisine = document.createElement('p');
+    displayCuisine.textContent = recipeCuisine;
+    recipeCard.appendChild(displayCuisine);
+
+    var recipeCalories = data.hits[i].recipe.calories;
+    var displayCalories = document.createElement('p');
+    displayCalories.textContent = 'Calories: ' + recipeCalories;
+    recipeCard.appendChild(displayCalories);    
+
+    var recipeSource = data.hits[i].recipe.source;
+    var displaySource = document.createElement('p');
+    displaySource.textContent = recipeSource;
+    displaySource.setAttribute('html',data.hits[i].recipe.url)
+    recipeCard.appendChild(displaySource);  
+    
+    
+  }
+  
+}
+
 
 searchBtnEl.addEventListener('click', function (event) {
   event.preventDefault();
