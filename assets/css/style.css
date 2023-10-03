@@ -6,6 +6,29 @@ font-semibold {
     padding: 120px;
 
 }
+.container {
+   width: auto;
+   margin: auto;
+}
+.container img {
+   width: auto;
+   height: auto;
+   align-items: center;
+}
+.container:hover img{
+   opacity: ;
+}
+#navbar {
+   width:auto;
+   
+   height: 30%;
+}
+#navbar ul li {
+   display: inline-block;
+   padding-bottom: 0%;
+   padding-top: 0%;
+   
+}
 
 @media screen and (max-width: 900px) {
     .col {
