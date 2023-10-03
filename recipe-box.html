@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>W.i.t.M. Recipe Box</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="./assets/css/recipe-box-styling.css">
+</head>
+<body>
+    <main>
+       <h2 id="recipe-box-header" class="text-center font-serif text-xl">Recipe Box</h2>
+        <button id="modal-test-btn" class="text-white bg-green-700 rounded py-2 px-6">Click to open modal</button>
+        <section id="recipe-box-container" class=""></section>
+        <form id="recipe-card-form" class="bg-slate-300 flex flex-col w-3/4 fixed mt-20 p-3 hidden">
+            <div class="row">
+                <label for="title-input">Title</label> </br>
+                <input type="text" name="title-input" placeholder="Recipe Title" class="border border-slate-400">
+                <button id="close" class="rounded border border-slate-400 py-1 px-2">X</button>  
+                <br>
+            </div>
+            <div class="">
+                <label for="recipe-text">Recipe Text</label>
+                <br>
+                <textarea name="recipe-text" id="recipe-text" cols="30" rows="10" placeholder="Type or paste recipe here" class="border border-slate-400"></textarea>
+            </div>
+
+            <label for="recipe-url">Recipe URL (optional)</label>
+            <input type="url" class="border border-slate-400">
+            <br>
+            <button class="text-white bg-green-700 rounded py-2 px-6">Save Recipe</button>
+        </form>
+       </section>
+    </main>
+    <script src="./assets/js/recipeBox.js"></script>
+</body>
+</html>
