@@ -153,6 +153,7 @@ function displayRecipes(data) {
 
     var saveBtn = document.createElement('button');
     saveBtn.textContent = "Save Recipe"
+    saveBtn.setAttribute('class','text-white bg-green-700 rounded py-2 px-6 w-full')
     recipeCard.appendChild(saveBtn)
     
     
