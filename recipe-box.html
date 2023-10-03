@@ -13,23 +13,24 @@
        <h2 id="recipe-box-header" class="text-center font-serif text-xl">Recipe Box</h2>
         <button id="modal-test-btn" class="text-white bg-green-700 rounded py-2 px-6">Click to open modal</button>
         <section id="recipe-box-container" class=""></section>
-        <form id="recipe-card-form" class="bg-slate-300 flex flex-col w-3/4 fixed mt-20 p-3 hidden">
+        <form id="recipe-card-form" class="bg-slate-600 flex flex-col w-1/2 mt-20 ml-auto mr-auto p-3 hidden">
             <div class="row">
-                <label for="title-input">Title</label> </br>
-                <input type="text" name="title-input" placeholder="Recipe Title" class="border border-slate-400">
-                <button id="close" class="rounded border border-slate-400 py-1 px-2">X</button>  
-                <br>
+                <label for="title-input" class="pb-2 text-white">Title</label>                 
+                <button id="close" class="float-right text-white">X</button>
+                </br>
+                <input type="text" name="title-input" placeholder="Recipe Title" class="rounded p-2">
+                <br><br>
             </div>
             <div class="">
-                <label for="recipe-text">Recipe Text</label>
+                <label for="recipe-text" class="pb-2 text-white">Recipe Text</label>
                 <br>
-                <textarea name="recipe-text" id="recipe-text" cols="30" rows="10" placeholder="Type or paste recipe here" class="border border-slate-400"></textarea>
+                <textarea name="recipe-text" id="recipe-text" cols="30" rows="10" placeholder="Type or paste recipe here" class="rounded p-2"></textarea>
             </div>
-
-            <label for="recipe-url">Recipe URL (optional)</label>
-            <input type="url" class="border border-slate-400">
             <br>
-            <button class="text-white bg-green-700 rounded py-2 px-6">Save Recipe</button>
+            <label for="recipe-url" class="pb-2 text-white">Recipe Link (optional)</label>
+            <input type="url" class="rounded p-2">
+            <br>
+            <button id="save-button" class="text-white bg-green-700 rounded py-2 px-6">Save Recipe</button>
         </form>
        </section>
     </main>
