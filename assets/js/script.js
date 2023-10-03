@@ -150,6 +150,10 @@ function displayRecipes(data) {
     displaySource.textContent = recipeSource;
     displaySource.setAttribute('html',data.hits[i].recipe.url)
     recipeCard.appendChild(displaySource);  
+
+    var saveBtn = document.createElement('button');
+    saveBtn.textContent = "Save Recipe"
+    recipeCard.appendChild(saveBtn)
     
     
   }
