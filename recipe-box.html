@@ -18,19 +18,26 @@
                 <label for="title-input" class="pb-2 text-white">Title</label>                 
                 <button id="close" class="float-right text-white">X</button>
                 </br>
-                <input type="text" name="title-input" placeholder="Recipe Title" class="rounded p-2">
+                <input type="text" name="title-input" id="title-input" placeholder="Recipe Title" class="rounded p-2 w-5/6">
                 <br><br>
             </div>
-            <div class="">
-                <label for="recipe-text" class="pb-2 text-white">Recipe Text</label>
+            <div>
+                <label for="recipe-body" class="pb-2 text-white">Recipe Text</label>
                 <br>
-                <textarea name="recipe-text" id="recipe-text" cols="30" rows="10" placeholder="Type or paste recipe here" class="rounded p-2"></textarea>
+                <textarea name="recipe-body" id="recipe-body" cols="30" rows="auto" placeholder="Type or paste recipe here" class="rounded p-2 w-5/6"></textarea>
+            </div>
+            <br>
+            <div>
+                <label for="nutrition-info" class="pb-2 text-white">Nutrition Information</label>
+                <br>
+                <textarea name="nutrition-info" id="nutrition-info" cols="30" rows="auto" placeholder="Type or paste nutrition info here" class="rounded p-2 w-5/6"></textarea>
             </div>
             <br>
             <label for="recipe-url" class="pb-2 text-white">Recipe Link (optional)</label>
-            <input type="url" class="rounded p-2">
             <br>
-            <button id="save-button" class="text-white bg-green-700 rounded py-2 px-6">Save Recipe</button>
+            <input type="text" id="recipe-url" class="rounded p-2 w-5/6">
+            <br><br>
+            <button id="save-button" class="text-white bg-green-700 rounded py-2 px-6 w-full">Save Recipe</button>
         </form>
        </section>
     </main>
