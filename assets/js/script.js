@@ -3,7 +3,7 @@ var searchUrlInputEl = document.querySelector("#url-input");
 var searchIngridientsEl = document.querySelector("#ingredients-search");
 var searchBtnEl = document.querySelector("#search-btn");
 var resultsContainerEl = document.querySelector("#results");
-var recipeListEl = document.querySelector("#recipe-list");
+var recipeListEl = document.getElementById("recipe-list");
 
 //add on the text area box a placeholder that says 
 // "1 cup rice, 10 oz chickpeas", etc. Enter each ingredient on a new line."
@@ -124,6 +124,8 @@ function displayResults(data) {
 
 
 function displayRecipes(data) {
+  recipeListEl.innerHTML = '';
+
   for (var i=0; i<5; i++) {
     var recipeCard = document.createElement('section');
     recipeListEl.appendChild(recipeCard);
@@ -148,9 +150,18 @@ function displayRecipes(data) {
     displaySource.textContent = recipeSource;
     displaySource.setAttribute('html',data.hits[i].recipe.url)
     recipeCard.appendChild(displaySource);  
+
+    var saveBtn = document.createElement('button');
+    saveBtn.textContent = "Save Recipe"
+    recipeCard.appendChild(saveBtn)
     
     
   }
+  
+  document.getElementById('main').appendChild(recipeListEl);
+
+  console.log(recipeListEl);
+  console.log(document.getElementById('main'))
   
 }
 
