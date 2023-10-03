@@ -1,10 +1,18 @@
+body {
+   font-family: 'Tenor Sans', sans-serif;
+}
+
+
 font-semibold {
     font-weight: 600;
 }
 #header li {
     display: inline;
     padding: 120px;
+}
 
+h1 {
+   font-family: 'Noto Serif', serif;
 }
 .container {
    width: auto;

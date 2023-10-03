@@ -3,7 +3,7 @@ var searchUrlInputEl = document.querySelector("#url-input");
 var searchIngridientsEl = document.querySelector("#ingredients-search");
 var searchBtnEl = document.querySelector("#search-btn");
 var resultsContainerEl = document.querySelector("#results");
-var recipeListEl = document.querySelector("#recipe-list");
+var recipeListEl = document.getElementById("recipe-list");
 
 //add on the text area box a placeholder that says 
 // "1 cup rice, 10 oz chickpeas", etc. Enter each ingredient on a new line."
@@ -124,6 +124,8 @@ function displayResults(data) {
 
 
 function displayRecipes(data) {
+  recipeListEl.innerHTML = '';
+
   for (var i=0; i<5; i++) {
     var recipeCard = document.createElement('section');
     recipeListEl.appendChild(recipeCard);
@@ -144,13 +146,23 @@ function displayRecipes(data) {
     recipeCard.appendChild(displayCalories);    
 
     var recipeSource = data.hits[i].recipe.source;
-    var displaySource = document.createElement('p');
+    var displaySource = document.createElement('a');
     displaySource.textContent = recipeSource;
-    displaySource.setAttribute('html',data.hits[i].recipe.url)
+    displaySource.setAttribute('href',data.hits[i].recipe.url)
     recipeCard.appendChild(displaySource);  
+
+    var saveBtn = document.createElement('button');
+    saveBtn.textContent = "Save Recipe"
+    saveBtn.setAttribute('class','text-white bg-green-700 rounded py-2 px-6 w-full')
+    recipeCard.appendChild(saveBtn)
     
     
   }
+  
+  document.getElementById('main').appendChild(recipeListEl);
+
+  console.log(recipeListEl);
+  console.log(document.getElementById('main'))
   
 }
 
