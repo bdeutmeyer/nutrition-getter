@@ -29,7 +29,6 @@ recipeCardForm.addEventListener('submit', function(event) {
         alert("Please fill in all fields");
         return;
     }
-
     var newRecipe = {
         title: titleInputEl.value,
         body: nutritionInfoEl.value,
@@ -44,8 +43,6 @@ recipeCardForm.addEventListener('submit', function(event) {
 });
 
 function printSavedRecipes() {
-
-
     // added check if array is empty
     if (recipeCardArray.length === 0) {
         var localRecipeArray = JSON.parse(localStorage.getItem('recipe'));
@@ -64,8 +61,12 @@ function printSavedRecipes() {
             recipeBoxContainerEl.appendChild(recipeCard);
 
             var recipeURL = recipeCardArray[i].url;
+            if (recipeURL.startsWith('http')) {} else {
+                recipeURL = 'https://' + recipeURL
+            }
             var displayAnchor = document.createElement('a');
             displayAnchor.setAttribute('href',recipeURL);
+            displayAnchor.setAttribute('target', '_blank');
             recipeCard.setAttribute('class', 'border border-2 border-slate-600 rounded p-2');
             recipeCard.appendChild(displayAnchor);
         
@@ -85,9 +86,22 @@ function printSavedRecipes() {
                 recipeCard.appendChild(displayNutri);
             });
 
+// delete button    
+            var deleteButton = document.createElement('button');
+            deleteButton.textContent = 'Delete';
+            deleteButton.style.backgroundColor = 'green';
+            deleteButton.dataset.index = i; 
+    
+            deleteButton.addEventListener('click', function () {
+                var deleteIndex = this.dataset.index;
+                recipeCardArray.splice(deleteIndex, 1); 
+                localStorage.setItem('recipe', JSON.stringify(recipeCardArray)); 
+                printSavedRecipes(); 
+            });
+            recipeCard.appendChild(deleteButton);
         }
-
 }
+
 //keeps displaying arrays 
 printSavedRecipes();
 
