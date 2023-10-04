@@ -64,6 +64,9 @@ function printSavedRecipes() {
             recipeBoxContainerEl.appendChild(recipeCard);
 
             var recipeURL = recipeCardArray[i].url;
+            if (recipeURL.startsWith('http')) {} else {
+                recipeURL = 'https://' + recipeURL
+            }
             var displayAnchor = document.createElement('a');
             displayAnchor.setAttribute('href',recipeURL);
             recipeCard.setAttribute('class', 'border border-2 border-slate-600 rounded p-2');
@@ -88,6 +91,7 @@ function printSavedRecipes() {
         }
 
 }
+
 //keeps displaying arrays 
 printSavedRecipes();
 
