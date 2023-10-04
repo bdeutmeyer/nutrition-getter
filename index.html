@@ -22,7 +22,7 @@
         <nav id="navbar">
             <ul id="navlist" class="text-white bg-green-900 ">
                 <li id="find-recipes" class="hover:bg-green-700">Find Recipes</li>
-                <li id="my-recipes" class="hover:bg-green-700">My Recipes</li>
+                <li id="my-recipes" class="hover:bg-green-700"><a href="./recipe-box.html">My Recipes</a></li>
             </ul>
         </nav>
     </header>
@@ -46,6 +46,27 @@
         <section id="recipe-list" class="w-full md:w-1/4 mx-auto border border-black h-full bg-slate-600 text-white text-center my-5">
             <h4 class="p-2">Recipes you may enjoy:</h4>
         </section>
+        <form id="recipe-card-form" class="bg-slate-600 flex flex-col w-1/2 mt-20 ml-auto mr-auto p-3 hidden">
+            <div class="row">
+                <label for="title-input" class="pb-2 text-white">Title</label>                 
+                <button id="close" class="float-right text-white">X</button>
+                </br>
+                <input type="text" name="title-input" id="title-input" placeholder="Recipe Title" class="rounded p-2 w-5/6">
+                <br>
+            </div>
+            <br>
+            <div>
+                <label for="nutrition-info" class="pb-2 text-white">Nutrition Information</label>
+                <br>
+                <textarea name="nutrition-info" id="nutrition-info" cols="30" rows="auto" placeholder="Type or paste nutrition info here" class="rounded p-2 w-5/6"></textarea>
+            </div>
+            <br>
+            <label for="recipe-url" class="pb-2 text-white">Link to Recipe</label>
+            <br>
+            <input type="text" id="recipe-url" class="rounded p-2 w-5/6">
+            <br><br>
+            <button id="save-button" class="text-white bg-green-700 rounded py-2 px-6 w-full">Save Recipe</button>
+        </form>
     </main>
     <script src="./assets/js/script.js"></script>
 </body>

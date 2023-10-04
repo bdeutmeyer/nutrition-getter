@@ -32,7 +32,7 @@ recipeCardForm.addEventListener('submit', function(event) {
     localStorage.setItem('recipe', JSON.stringify(recipeCardArray));
     recipeCardForm.style.display = 'none';
 
-
+    printSavedRecipes();
 });
 
 function printSavedRecipes() {
@@ -70,5 +70,4 @@ function printSavedRecipes() {
 
         }
     }
-    
 }

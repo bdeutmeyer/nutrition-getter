@@ -4,6 +4,10 @@ var searchIngridientsEl = document.querySelector("#ingredients-search");
 var searchBtnEl = document.querySelector("#search-btn");
 var resultsContainerEl = document.querySelector("#results");
 var recipeListEl = document.getElementById("recipe-list");
+var recipeCardForm = document.getElementById('recipe-card-form');
+var titleInputEl = document.getElementById('title-input');
+var nutritionInfoEl = document.getElementById('nutrition-info');
+var recipeUrl = document.getElementById('recipe-url');
 
 //add on the text area box a placeholder that says 
 // "1 cup rice, 10 oz chickpeas", etc. Enter each ingredient on a new line."
@@ -155,15 +159,38 @@ function displayRecipes(data) {
     saveBtn.textContent = "Save Recipe"
     saveBtn.setAttribute('class','text-white bg-green-700 rounded py-2 px-6 w-full')
     recipeCard.appendChild(saveBtn)
-    
+
+    saveBtn.dataset.url = data.hits[i].recipe.url
+    saveBtn.dataset.name = data.hits[i].recipe.label
+    saveBtn.dataset.calories = Math.floor(data.hits[i].recipe.calories)
+    saveBtn.dataset.carbs = Math.floor(data.hits[i].recipe.totalNutrients.CHOCDF.quantity)
+    saveBtn.dataset.protein = Math.floor(data.hits[i].recipe.totalNutrients.PROCNT.quantity)
+    saveBtn.dataset.fat = Math.floor(data.hits[i].recipe.totalNutrients.FAT.quantity)
+    saveBtn.dataset.sugar = Math.floor(data.hits[i].recipe.totalNutrients.SUGAR.quantity)
+    saveBtn.dataset.chol = Math.floor(data.hits[i].recipe.totalNutrients.CHOLE.quantity)
+    saveBtn.dataset.fiber = Math.floor(data.hits[i].recipe.totalNutrients.FIBTG.quantity)
+    saveBtn.dataset.sodium = Math.floor(data.hits[i].recipe.totalNutrients.NA.quantity)
+
+
+    saveBtn.addEventListener('click', function() {openModal(event.target.dataset.name,event.target.dataset.url,event.target.dataset.calories,event.target.dataset.carbs)})
     
   }
   
   document.getElementById('main').appendChild(recipeListEl);
-
-  console.log(recipeListEl);
-  console.log(document.getElementById('main'))
   
+}
+
+
+function openModal(title,url,calories,carbs) {
+
+  console.log(('Calories: ' + calories + "\n" + 'Carbohydrates: ' + carbs + 'mg'))
+  titleInputEl.setAttribute('value',title);
+  recipeUrl.setAttribute('value',url);
+  nutritionInfoEl.setAttribute('value',('Calories: ' + calories + "\n" + 'Carbohydrates: ' + carbs + 'mg'))
+
+
+
+  recipeCardForm.style.display = 'block';
 }
 
 
@@ -171,7 +198,3 @@ searchBtnEl.addEventListener('click', function (event) {
   event.preventDefault();
   getApi();
 });
-
-
-
-
