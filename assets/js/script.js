@@ -1,6 +1,6 @@
-var searchFormEl = document.getElementById('search-form');
-var searchUrlInputEl = document.querySelector("#url-input");
+var searchFormEl = document.getElementById('recipe-search');
 var searchIngridientsEl = document.querySelector("#ingredients-search");
+var searchQueryEl = document.querySelector("#find-recipes-input");
 var searchBtnEl = document.querySelector("#search-btn");
 var resultsContainerEl = document.querySelector("#results");
 var recipeListEl = document.getElementById("recipe-list");
@@ -10,22 +10,31 @@ var nutritionInfoEl = document.getElementById('nutrition-info');
 var recipeUrl = document.getElementById('recipe-url');
 var recipeCardArray = [];
 
-//Listen for ingredient search submit and trigger API functions
+
+//Listen for Find Recipes search and trigger search API
 searchBtnEl.addEventListener('click', function (event) {
   event.preventDefault();
-  getApi();
+  var searchQueryIn = searchIngridientsEl.value;
+  nutritionFacts(searchQueryIn);
+  recipeSearch(searchQueryIn);
 });
 
 
-// Query both nutrition facts API and related recipes API
-function getApi() {
-  var searchQueryIn = searchIngridientsEl.value;
+//Listen for ingredient search submit and trigger API functions
+searchFormEl.addEventListener('submit', function (event) {
+  event.preventDefault();
+  event.stopPropagation();
+  var searchQuery = searchQueryEl.value;
+  recipeSearch(searchQuery);
+});
 
 
-  if (searchQueryIn) {
+//Function to query nutrition facts API
+function nutritionFacts(query) {
+  if (query) {
     const url =
       "https://edamam-edamam-nutrition-analysis.p.rapidapi.com/api/nutrition-data?ingr=" +
-      searchQueryIn +
+      query +
       "&nutrition-type=cooking";
 
     const options = {
@@ -52,40 +61,43 @@ function getApi() {
         console.error(error); 
       });
   }
-
-
-// <<< ------------ second api -------->>>>>
-  console.log(searchQueryIn)
-    if (searchQueryIn) {
-      const url =
-        "https://edamam-recipe-search.p.rapidapi.com/api/recipes/v2?type=public&q=" +
-        searchQueryIn;
-  
-      const options = {
-        method: "GET",
-        headers: {
-          "X-RapidAPI-Key": "2e845e8009mshc295949c74088fcp167a1djsn8494e03546dc",
-          "X-RapidAPI-Host": "edamam-recipe-search.p.rapidapi.com",
-        },
-      };
-  
-      fetch(url, options)
-        .then(function (response) {
-          if (response.ok) {
-            return response.json();
-          } else {
-            console.log("Response failed");
-          }
-        })
-        .then(function (data) {
-                  console.log(data);
-                  displayRecipes(data);
-                })
-                .catch(function (error) {
-                  console.error(error); 
-                });
-    }
 }
+
+//Function to query recipe search API
+function recipeSearch(query) {
+  console.log(query)
+  if (query) {
+    const url =
+      "https://edamam-recipe-search.p.rapidapi.com/api/recipes/v2?type=public&q=" +
+      query;
+
+    const options = {
+      method: "GET",
+      headers: {
+        "X-RapidAPI-Key": "2e845e8009mshc295949c74088fcp167a1djsn8494e03546dc",
+        "X-RapidAPI-Host": "edamam-recipe-search.p.rapidapi.com",
+      },
+    };
+
+    fetch(url, options)
+      .then(function (response) {
+        if (response.ok) {
+          return response.json();
+        } else {
+          console.log("Response failed");
+        }
+      })
+      .then(function (data) {
+                console.log(data);
+                displayRecipes(data);
+              })
+              .catch(function (error) {
+                console.error(error); 
+              });
+  }
+}
+
+
 
 // Save nutrition data from API, format and print to screen
 function displayResults(data) {
@@ -188,6 +200,7 @@ function displayRecipes(data) {
   
 }
 
+
 // Open Add Recipe modal and pre-populate with data fields
 function openModal(title,url,calories,carbs,protein,fat,sugar,chol,fiber,sodium) {
 
@@ -198,6 +211,7 @@ function openModal(title,url,calories,carbs,protein,fat,sugar,chol,fiber,sodium)
 
   recipeCardForm.style.display = 'block';
 }
+
 
 // Listen for Add Recipe modal submit-- add to local storage and load Recipe Box page
 recipeCardForm.addEventListener('submit', function(event) {

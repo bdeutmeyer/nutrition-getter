@@ -22,10 +22,11 @@
         </div>
         <nav id="navbar">
             <ul id="navlist" class="text-white bg-green-900 p-2 flex justify-between">
-                <div>
+                <form id="recipe-search">
                     <label for="find-recipes-input" id="find-recipes" class="hover:underline ml-10">Find Recipes:</label>
-                    <input type="text" name="find-recipes-input" id="find-recipes-input" placeholder="Search..." class="p-1 text-black">
-                </div>
+                    <input type="text" name="find-recipes-input" id="find-recipes-input" placeholder="Search..." class="p-1">
+                    <input type="submit">
+                </form>
                 <li id="my-recipes" class="hover:underline">My Saved Recipes</li>
             </ul>
         </nav>
