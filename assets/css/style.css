@@ -23,9 +23,9 @@ h1 {
    height: auto;
    align-items: center;
 }
-.container:hover img{
+/* .container:hover img{
    opacity: ;
-}
+} */
 #navbar {
    width:auto;
    
