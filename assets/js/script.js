@@ -8,10 +8,16 @@ var recipeCardForm = document.getElementById('recipe-card-form');
 var titleInputEl = document.getElementById('title-input');
 var nutritionInfoEl = document.getElementById('nutrition-info');
 var recipeUrl = document.getElementById('recipe-url');
+var recipeCardArray = [];
 
-//add on the text area box a placeholder that says 
-// "1 cup rice, 10 oz chickpeas", etc. Enter each ingredient on a new line."
+//Listen for ingredient search submit and trigger API functions
+searchBtnEl.addEventListener('click', function (event) {
+  event.preventDefault();
+  getApi();
+});
 
+
+// Query both nutrition facts API and related recipes API
 function getApi() {
   var searchQueryIn = searchIngridientsEl.value;
 
@@ -81,6 +87,7 @@ function getApi() {
     }
 }
 
+// Save nutrition data from API, format and print to screen
 function displayResults(data) {
   resultsContainerEl.innerHTML = '';
 
@@ -126,7 +133,7 @@ function displayResults(data) {
 }
 
 
-
+//Save top 5 recipes, print to screen and add Save Recipe buttons
 function displayRecipes(data) {
   recipeListEl.innerHTML = '';
 
@@ -144,7 +151,7 @@ function displayRecipes(data) {
     displayCuisine.textContent = recipeCuisine;
     recipeCard.appendChild(displayCuisine);
 
-    var recipeCalories = data.hits[i].recipe.calories;
+    var recipeCalories = Math.floor(data.hits[i].recipe.calories);
     var displayCalories = document.createElement('p');
     displayCalories.textContent = 'Calories: ' + recipeCalories;
     recipeCard.appendChild(displayCalories);    
@@ -160,6 +167,7 @@ function displayRecipes(data) {
     saveBtn.setAttribute('class','text-white bg-green-700 rounded py-2 px-6 w-full')
     recipeCard.appendChild(saveBtn)
 
+    // Save API data as data fields on button elements in order to prepopulate modal
     saveBtn.dataset.url = data.hits[i].recipe.url
     saveBtn.dataset.name = data.hits[i].recipe.label
     saveBtn.dataset.calories = Math.floor(data.hits[i].recipe.calories)
@@ -172,7 +180,7 @@ function displayRecipes(data) {
     saveBtn.dataset.sodium = Math.floor(data.hits[i].recipe.totalNutrients.NA.quantity)
 
 
-    saveBtn.addEventListener('click', function() {openModal(event.target.dataset.name,event.target.dataset.url,event.target.dataset.calories,event.target.dataset.carbs)})
+    saveBtn.addEventListener('click', function() {openModal(event.target.dataset.name,event.target.dataset.url,event.target.dataset.calories,event.target.dataset.carbs,event.target.dataset.protein,event.target.dataset.fat,event.target.dataset.sugar,event.target.dataset.chol,event.target.dataset.fiber,event.target.dataset.sodium)})
     
   }
   
@@ -180,21 +188,49 @@ function displayRecipes(data) {
   
 }
 
-
-function openModal(title,url,calories,carbs) {
+// Open Add Recipe modal and pre-populate with data fields
+function openModal(title,url,calories,carbs,protein,fat,sugar,chol,fiber,sodium) {
 
   console.log(('Calories: ' + calories + "\n" + 'Carbohydrates: ' + carbs + 'mg'))
   titleInputEl.setAttribute('value',title);
   recipeUrl.setAttribute('value',url);
-  nutritionInfoEl.setAttribute('value',('Calories: ' + calories + "\n" + 'Carbohydrates: ' + carbs + 'mg'))
-
-
+  nutritionInfoEl.value = ('Calories: ' + calories + "\n" + 'Carbohydrates: ' + carbs + 'mg' + "\n" + 'Protein: ' + protein + 'g' + "\n" + 'Fat: ' + fat + 'g' + "\n" + 'Sugar: ' + sugar + 'g' + "\n" + 'Cholesterol: ' + chol + 'mg' + "\n" + 'Fiber: ' + fiber + 'g' + "\n" + 'Sodium: ' + sodium + 'mg')
 
   recipeCardForm.style.display = 'block';
 }
 
-
-searchBtnEl.addEventListener('click', function (event) {
+// Listen for Add Recipe modal submit-- add to local storage and load Recipe Box page
+recipeCardForm.addEventListener('submit', function(event) {
   event.preventDefault();
-  getApi();
+  event.stopPropagation();
+
+  //added if card form input empty return alert preventing empty output to display
+  if (!titleInputEl.value || !nutritionInfoEl.value || !recipeUrl.value) {
+      alert("Please fill in all fields");
+      return;
+  }
+
+  var newRecipe = {
+      title: titleInputEl.value,
+      body: nutritionInfoEl.value,
+      url: recipeUrl.value,
+  }
+
+    // added check if array is empty
+    if (recipeCardArray.length === 0) {
+      var localRecipeArray = JSON.parse(localStorage.getItem('recipe'));
+
+      if (localRecipeArray !== null) {
+          recipeCardArray = localRecipeArray;
+      }
+  }
+
+  console.log(recipeCardArray)
+  recipeCardArray.push(newRecipe);
+  console.log(recipeCardArray);
+
+  localStorage.setItem('recipe', JSON.stringify(recipeCardArray));
+  recipeCardForm.style.display = 'none';
+
+  window.location.href = "./recipe-box.html"
 });
