@@ -12,20 +12,26 @@ font-semibold {
 }
 
 h1 {
-   font-family: 'Noto Serif', serif;
-}
-.container {
-   width: auto;
-   margin: auto;
+   font-family: 'Noto Serif', serif, ;
+   color: white;
 }
 .container img {
-   width: auto;
+   width: 30%;
    height: auto;
    align-items: center;
+
 }
-/* .container:hover img{
-   opacity: ;
-} */
+.container:hover img{
+   /* opacity: 30%;
+   text-shadow: 2px; */
+   text-decoration: underline;
+}
+.center {
+   display: block;
+   margin-left: auto;
+   margin-right: auto;
+   width: 50%;
+ }
 #navbar {
    width:auto;
    
