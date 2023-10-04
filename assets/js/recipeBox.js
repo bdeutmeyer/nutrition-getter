@@ -15,6 +15,7 @@ modalTestBtn.onclick = function() {
 }
 
 closeBtn.onclick = function(event) {
+    event.preventDefault();
     event.stopPropagation();
     recipeCardForm.style.display = 'none';
 }
@@ -22,6 +23,13 @@ closeBtn.onclick = function(event) {
 recipeCardForm.addEventListener('submit', function(event) {
     event.preventDefault();
     event.stopPropagation();
+
+    //added if card form input empty return alert preventing empty output to display
+    if (!titleInputEl.value || !nutritionInfoEl.value || !recipeUrl.value) {
+        alert("Please fill in all fields");
+        return;
+    }
+
     var newRecipe = {
         title: titleInputEl.value,
         body: nutritionInfoEl.value,
@@ -37,17 +45,19 @@ recipeCardForm.addEventListener('submit', function(event) {
 
 function printSavedRecipes() {
 
-    var localRecipeArray = JSON.parse(localStorage.getItem('recipe'));
 
-    if (localRecipeArray == null) {
-        recipeCardArray = [];
-    } else {
-        recipeCardArray = localRecipeArray
+    // added check if array is empty
+    if (recipeCardArray.length === 0) {
+        var localRecipeArray = JSON.parse(localStorage.getItem('recipe'));
+
+        if (localRecipeArray !== null) {
+            recipeCardArray = localRecipeArray;
+        }
     }
-
     console.log(recipeCardArray)
 
-    if (recipeCardArray == null) {} else {
+    //added clear container 
+    recipeBoxContainerEl.innerHTML = '';
 
         for (var i=0; i<recipeCardArray.length; i++) {
             var recipeCard = document.createElement('section');
@@ -65,12 +75,19 @@ function printSavedRecipes() {
             displayName.setAttribute('style', 'font-weight: bolder; font-size: 125%');
             displayAnchor.appendChild(displayName);
 
+            
+            //added to split text on p element
             var recipeNutri = recipeCardArray[i].body;
-            var displayNutri = document.createElement('p');
-            displayNutri.textContent = recipeNutri;
-            recipeCard.appendChild(displayNutri);
+            var paragraphs = recipeNutri.split('\n'); 
+            paragraphs.forEach(function (paragraphText) {
+                var displayNutri = document.createElement('p');
+                displayNutri.textContent = paragraphText.trim(); 
+                recipeCard.appendChild(displayNutri);
+            });
 
         }
-    }
-    
+
 }
+//keeps displaying arrays 
+printSavedRecipes();
+
