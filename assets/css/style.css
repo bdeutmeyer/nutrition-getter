@@ -22,8 +22,6 @@ h1 {
 
 }
 .container:hover img{
-   /* opacity: 30%;
-   text-shadow: 2px; */
    text-decoration: underline;
 }
 .center {

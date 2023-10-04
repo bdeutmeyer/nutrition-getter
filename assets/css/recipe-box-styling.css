@@ -1,0 +1,42 @@
+body {
+    font-family: 'Tenor Sans', sans-serif;
+ }
+ 
+ 
+ font-semibold {
+     font-weight: 600;
+ }
+ #header li {
+     display: inline;
+     padding: 120px;
+ }
+ 
+ h1 {
+    font-family: 'Noto Serif', serif, ;
+    color: white;
+ }
+ .container img {
+    width: 200px;
+    height: auto;
+    align-items: center;
+ 
+ }
+ .container:hover img{
+    text-decoration: underline;
+ }
+ .center {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 50%;
+}
+#navbar {
+    width:auto;
+    
+    height: 30%;
+}
+#navbar ul li {
+    display: inline-block;
+    padding-bottom: 0%;
+    padding-top: 0%;
+} 
