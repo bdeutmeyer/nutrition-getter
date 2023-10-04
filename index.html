@@ -21,14 +21,17 @@
             <h1 class="text-center">Nutrition information and recipe finding tool</h1>
         </div>
         <nav id="navbar">
-            <ul id="navlist" class="text-white bg-green-900">
-                <li id="find-recipes" class="hover:underline">Find Recipes</li>
+            <ul id="navlist" class="text-white bg-green-900 p-2 flex justify-between">
+                <div>
+                    <label for="find-recipes-input" id="find-recipes" class="hover:underline ml-10">Find Recipes:</label>
+                    <input type="text" name="find-recipes-input" id="find-recipes-input" placeholder="Search..." class="p-1">
+                </div>
                 <li id="my-recipes" class="hover:underline">My Saved Recipes</li>
             </ul>
         </nav>
     </header>
 
-    <main id="main" class="sm:flex-row md:flex">
+    <main id="main" class="sm:flex-row md:flex sm:m-2">
         <!-- Search section -->
         <form id="search-form" class="sm:w-full md:w-1/3 border border-2 border-slate-600 rounded sm:mx-auto sm:my-2 md:m-2 p-2 text-center">
             <h4>Calculate Nutrition Information:</h4>
