@@ -56,11 +56,13 @@ function printSavedRecipes() {
             var recipeURL = recipeCardArray[i].url;
             var displayAnchor = document.createElement('a');
             displayAnchor.setAttribute('href',recipeURL);
+            recipeCard.setAttribute('class', 'border border-2 border-slate-600 rounded p-2');
             recipeCard.appendChild(displayAnchor);
         
             var recipeName = recipeCardArray[i].title;
             var displayName = document.createElement('h3');
             displayName.textContent = recipeName;
+            displayName.setAttribute('style', 'font-weight: bolder; font-size: 125%');
             displayAnchor.appendChild(displayName);
 
             var recipeNutri = recipeCardArray[i].body;
@@ -70,4 +72,5 @@ function printSavedRecipes() {
 
         }
     }
+    
 }
