@@ -16,14 +16,12 @@ h1 {
    color: white;
 }
 .container img {
-   width: 30%;
+   width: 200px;
    height: auto;
    align-items: center;
 
 }
 .container:hover img{
-   /* opacity: 30%;
-   text-shadow: 2px; */
    text-decoration: underline;
 }
 .center {

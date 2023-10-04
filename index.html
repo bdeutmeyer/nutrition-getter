@@ -13,26 +13,26 @@
 </head>
 <body>
     <header id="header" class="bg-green-700">
-
         <div class="container">
-            <div class="hover:bg-green-900">
+            <a href="index.html">
                 <img src="./assets/WitM-cropped2.png" alt="What's in this Meal?" class="center">
-            </div>
+            </a>
             <h1 class="text-center">Nutrition information and recipe finding tool</h1>
         </div>
         <nav id="navbar">
             <ul id="navlist" class="text-white bg-green-900 p-2 flex justify-between">
                 <form id="recipe-search">
                     <label for="find-recipes-input" id="find-recipes" class="hover:underline ml-10">Find Recipes:</label>
-                    <input type="text" name="find-recipes-input" id="find-recipes-input" placeholder="Search..." class="p-1">
-                    <input type="submit">
+
+                    <input type="text" name="find-recipes-input" id="find-recipes-input" placeholder="Search..." class="p-1 text-black">
+                    <input type="submit" class="hover:underline cursor-pointer">
                 </form>
-                <li id="my-recipes" class="hover:underline">My Saved Recipes</li>
+                <li id="my-recipes" class="hover:underline cursor-pointer">My Saved Recipes</li>
             </ul>
         </nav>
     </header>
+    <main id="main" class="sm:flex-row md:flex">
 
-    <main id="main" class="sm:flex-row md:flex sm:m-2">
         <!-- Search section -->
         <form id="search-form" class="sm:w-full md:w-1/3 border border-2 border-slate-600 rounded sm:mx-auto sm:my-2 md:m-2 p-2 text-center">
             <h4>Calculate Nutrition Information:</h4>
