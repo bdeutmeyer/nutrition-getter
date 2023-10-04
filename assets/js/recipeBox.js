@@ -101,6 +101,7 @@ function printSavedRecipes() {
             recipeCard.appendChild(deleteButton);
         }
 }
+
 //keeps displaying arrays 
 printSavedRecipes();
 
