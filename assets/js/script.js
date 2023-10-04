@@ -59,6 +59,9 @@ function nutritionFacts(query) {
       })
       .catch(function (error) {
         console.error(error); 
+        var errorMessage = document.createElement('p');
+        errorMessage.textContent = "No nutrition information found. Be sure to specify ingredient amounts and check spelling."
+        resultsContainerEl.appendChild(errorMessage);
       });
   }
 }
@@ -93,6 +96,9 @@ function recipeSearch(query) {
               })
               .catch(function (error) {
                 console.error(error); 
+                var errorMessage = document.createElement('p');
+                errorMessage.textContent = "No recipes found with the specifed ingredients or search terms."
+                recipeListEl.appendChild(errorMessage);
               });
   }
 }
@@ -102,6 +108,11 @@ function recipeSearch(query) {
 // Save nutrition data from API, format and print to screen
 function displayResults(data) {
   resultsContainerEl.innerHTML = '';
+  var displayMacros = document.createElement('strong');
+  var linebreak = document.createElement('hr')
+  displayMacros.textContent = 'Nutrition Breakdown:'
+  resultsContainerEl.appendChild(displayMacros);
+  resultsContainerEl.appendChild(linebreak);
 
   var calorieEl = Math.floor(data.calories);
   var carbsEl = Math.floor(data.totalNutrients.CHOCDF.quantity);
@@ -112,7 +123,6 @@ function displayResults(data) {
   var fiberEl = Math.floor(data.totalNutrients.FIBTG.quantity);
   var sodiumEl = Math.floor(data.totalNutrients.NA.quantity);
 
-  var displayMacros = document.createElement('strong');
   var displayCalorieEl = document.createElement('li');
   var displayCarbsEl = document.createElement('li');
   var displayProteinEl = document.createElement('li');
@@ -122,7 +132,6 @@ function displayResults(data) {
   var displayFiberEl = document.createElement('li');
   var displaySodiumEl = document.createElement('li');
 
-  displayMacros.textContent = 'Nutrition Facts';
   displayCalorieEl.textContent = 'Calories: ' + calorieEl ;
   displayCarbsEl.textContent = 'Carbohydrates: ' + carbsEl + 'mg';
   displayProteinEl.textContent = 'Protein: ' + proteinEl + 'g';
@@ -132,7 +141,6 @@ function displayResults(data) {
   displayFiberEl.textContent = 'Fiber: ' + fiberEl + 'g';
   displaySodiumEl.textContent = 'Sodium: ' + sodiumEl + 'mg';
 
-  resultsContainerEl.appendChild(displayMacros);
   resultsContainerEl.appendChild(displayCalorieEl);
   resultsContainerEl.appendChild(displayCarbsEl);
   resultsContainerEl.appendChild(displayProteinEl);
@@ -148,6 +156,11 @@ function displayResults(data) {
 //Save top 5 recipes, print to screen and add Save Recipe buttons
 function displayRecipes(data) {
   recipeListEl.innerHTML = '';
+  var display = document.createElement('strong');
+  var linebreak = document.createElement('hr')
+  display.textContent = 'Recipes you may enjoy:'
+  recipeListEl.appendChild(display);
+  recipeListEl.appendChild(linebreak);
 
   for (var i=0; i<5; i++) {
     var recipeCard = document.createElement('section');
