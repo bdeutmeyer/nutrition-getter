@@ -10,9 +10,9 @@
 </head>
 <body>
     <main>
-       <h2 id="recipe-box-header" class="text-center font-serif text-xl">Recipe Box</h2>
+       <h2 id="recipe-box-header" class="text-center text-xl">Recipe Box</h2>
         <button id="modal-test-btn" class="text-white bg-green-700 rounded py-2 px-6">Click to open modal</button>
-        <section id="recipe-box-container" class=""></section>
+        <section id="recipe-form-container"></section>
         <form id="recipe-card-form" class="bg-slate-600 flex flex-col w-1/2 mt-20 ml-auto mr-auto p-3 hidden">
             <div class="row">
                 <label for="title-input" class="pb-2 text-white">Title</label>                 
@@ -34,6 +34,9 @@
             <br><br>
             <button id="save-button" class="text-white bg-green-700 rounded py-2 px-6 w-full">Save Recipe</button>
         </form>
+       </section>
+       <section id="recipe-box-container" class="grid sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-2 p-2">
+
        </section>
     </main>
     <script src="./assets/js/recipeBox.js"></script>
