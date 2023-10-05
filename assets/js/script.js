@@ -111,6 +111,7 @@ function displayResults(data) {
   var displayMacros = document.createElement('strong');
   var linebreak = document.createElement('hr')
   displayMacros.textContent = 'Nutrition Breakdown:'
+  displayMacros.setAttribute('class', 'font-extrabold text-lg');
   resultsContainerEl.appendChild(displayMacros);
   resultsContainerEl.appendChild(linebreak);
 
@@ -150,6 +151,22 @@ function displayResults(data) {
   resultsContainerEl.appendChild(displayFiberEl);
   resultsContainerEl.appendChild(displaySodiumEl);
   console.log(resultsContainerEl);
+
+  // var saveNutriBtn = document.createElement('button');
+  // saveNutriBtn.textContent = 'Save Nutrition Info';
+  // saveNutriBtn.setAttribute('class', 'text-white bg-green-900 hover:bg-green-700 hover:underline rounded py-2 px-6 w-full');
+  // resultsContainerEl.appendChild(saveNutriBtn);
+
+  // saveNutriBtn.dataset.calories = Math.floor(data.hits.recipe.calories)
+  // saveNutriBtn.dataset.carbs = Math.floor(data.hits.recipe.totalNutrients.CHOCDF.quantity)
+  // saveNutriBtn.dataset.protein = Math.floor(data.hits.recipe.totalNutrients.PROCNT.quantity)
+  // saveNutriBtn.dataset.fat = Math.floor(data.hits.recipe.totalNutrients.FAT.quantity)
+  // saveNutriBtn.dataset.sugar = Math.floor(data.hits.recipe.totalNutrients.SUGAR.quantity)
+  // saveNutriBtn.dataset.chol = Math.floor(data.hits.recipe.totalNutrients.CHOLE.quantity)
+  // saveNutriBtn.dataset.fiber = Math.floor(data.hits.recipe.totalNutrients.FIBTG.quantity)
+  // saveNutriBtn.dataset.sodium = Math.floor(data.hits.recipe.totalNutrients.NA.quantity)
+
+  // saveNutriBtn.addEventListener('click', function() {openModal(event.target.dataset.calories,event.target.dataset.carbs,event.target.dataset.protein,event.target.dataset.fat,event.target.dataset.sugar,event.target.dataset.chol,event.target.dataset.fiber,event.target.dataset.sodium)})
 }
 
 
@@ -159,38 +176,44 @@ function displayRecipes(data) {
   var display = document.createElement('strong');
   var linebreak = document.createElement('hr')
   display.textContent = 'Recipes you may enjoy:'
+  display.setAttribute('class', 'font-extrabold text-lg');
   recipeListEl.appendChild(display);
   recipeListEl.appendChild(linebreak);
 
   for (var i=0; i<5; i++) {
     var recipeCard = document.createElement('section');
+    recipeCard.setAttribute('class', 'flex justify-between border border-slate-400 rounded m-2 p-2')
     recipeListEl.appendChild(recipeCard);
 
     var recipeName = data.hits[i].recipe.label;
     var displayName = document.createElement('h3');
+    var cardSection = document.createElement('div');
     displayName.textContent = recipeName;
-    recipeCard.appendChild(displayName);
-
+    displayName.setAttribute('class', 'font-extrabold leading-loose');
+    cardSection.appendChild(displayName);
+    
     var recipeCuisine = data.hits[i].recipe.cuisineType;
     var displayCuisine = document.createElement('p');
     displayCuisine.textContent = recipeCuisine;
-    recipeCard.appendChild(displayCuisine);
+    cardSection.appendChild(displayCuisine);
 
     var recipeCalories = Math.floor(data.hits[i].recipe.calories);
     var displayCalories = document.createElement('p');
     displayCalories.textContent = 'Calories: ' + recipeCalories;
-    recipeCard.appendChild(displayCalories);    
+    cardSection.appendChild(displayCalories);    
 
     var recipeSource = data.hits[i].recipe.source;
     var displaySource = document.createElement('a');
     displaySource.textContent = recipeSource;
-    displaySource.setAttribute('href',data.hits[i].recipe.url)
-    recipeCard.appendChild(displaySource);  
+    displaySource.setAttribute('href',data.hits[i].recipe.url);
+    displaySource.setAttribute('class', 'hover:underline');
+    cardSection.appendChild(displaySource);
+    recipeCard.appendChild(cardSection);
 
     var saveBtn = document.createElement('button');
-    saveBtn.textContent = "Save Recipe"
-    saveBtn.setAttribute('class','text-white bg-green-700 rounded py-2 px-6 w-full')
-    recipeCard.appendChild(saveBtn)
+    saveBtn.textContent = "Save Recipe";
+    saveBtn.setAttribute('class','text-white bg-green-900 hover:bg-green-700 hover:underline rounded py-2 px-6 w-1/4');
+    recipeCard.appendChild(saveBtn);
 
     // Save API data as data fields on button elements in order to prepopulate modal
     saveBtn.dataset.url = data.hits[i].recipe.url
@@ -203,7 +226,6 @@ function displayRecipes(data) {
     saveBtn.dataset.chol = Math.floor(data.hits[i].recipe.totalNutrients.CHOLE.quantity)
     saveBtn.dataset.fiber = Math.floor(data.hits[i].recipe.totalNutrients.FIBTG.quantity)
     saveBtn.dataset.sodium = Math.floor(data.hits[i].recipe.totalNutrients.NA.quantity)
-
 
     saveBtn.addEventListener('click', function() {openModal(event.target.dataset.name,event.target.dataset.url,event.target.dataset.calories,event.target.dataset.carbs,event.target.dataset.protein,event.target.dataset.fat,event.target.dataset.sugar,event.target.dataset.chol,event.target.dataset.fiber,event.target.dataset.sodium)})
     
