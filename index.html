@@ -12,7 +12,7 @@
     <link rel="stylesheet" href="./assets/css/style.css">
 </head>
 <body>
-    <header id="header" class="bg-green-700">
+    <header id="header" class="bg-gradient-to-l from-green-900 to-green-400">
         <div class="container">
             <a href="index.html">
                 <img src="./assets/WitM-cropped2.png" alt="What's in this Meal?" class="center">
@@ -20,7 +20,7 @@
             <h1 class="text-center">Nutrition information and recipe finding tool</h1>
         </div>
         <nav id="navbar">
-            <ul id="navlist" class="text-white bg-green-900 p-2 flex justify-between">
+            <ul id="navlist" class="text-white bg-gradient-to-r from-green-900 to-green-400 p-2 flex justify-between">
                 <form id="recipe-search">
                     <label for="find-recipes-input" id="find-recipes" class="hover:underline ml-10">Find Recipes:</label>
                     <input type="text" name="find-recipes-input" id="find-recipes-input" placeholder="Search..." class="p-1 text-black">
@@ -30,7 +30,7 @@
             </ul>
         </nav>
     </header>
-    <main id="main" class="sm:flex-row md:flex">
+    <main id="main" class="sm:flex-row md:flex" style="background-image: url(https://static.vecteezy.com/system/resources/previews/003/823/542/non_2x/spices-for-use-as-cooking-ingredients-on-a-wooden-background-with-fresh-vegetables-healthy-food-herbs-organic-vegetables-on-the-table-raw-materials-of-cooking-preparation-tom-yum-free-photo.jpg);">
         <!-- Search section -->
         <form id="search-form" class="sm:w-full md:w-1/3 border border-2 border-slate-600 rounded sm:mx-auto sm:my-2 md:m-2 p-2 text-center">
             <h4>Calculate Nutrition Information:</h4>
@@ -38,7 +38,7 @@
             <button id="search-btn" class="text-white bg-green-900 rounded py-2 px-6 mt-2 w-full hover:underline hover:bg-green-700">Submit</button>
         </form>
         <!-- Results section -->
-        <section id="results" class="sm:w-full md:w-1/3 border border-2 border-slate-600 rounded sm:mx-auto sm:my-2 md:m-2 p-2 text-center">
+        <section id="results" class="sm:w-full md:w-1/3 border border-2 border-slate-600 rounded sm:mx-auto sm:my-2 md:m-2 p-2 text-center bg-white">
             <h4 class="border-bottom">Nutrition Breakdown:</h4>
             <section id="nutrition-results"></section>
         </section>  
