@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -11,9 +12,9 @@
     <link href="https://fonts.googleapis.com/css2?family=Noto+Serif&family=Tenor+Sans&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="./assets/css/style.css">
 </head>
+
 <body>
-    <!-- Header -->
-    <header id="header" class="bg-green-700">
+    <header id="header" class="bg-gradient-to-l from-green-900 to-green-400">
         <div class="container">
             <a href="index.html">
                 <img src="./assets/WitM-cropped2.png" alt="What's in this Meal?" class="center">
@@ -22,14 +23,15 @@
         </div>
         <!-- Navbar -->
         <nav id="navbar">
-            <ul id="navlist" class="text-white bg-green-900 p-2 flex justify-between">
+            <ul id="navlist" class="text-white bg-gradient-to-r from-green-900 to-green-400 p-2 flex justify-between">
                 <form id="recipe-search">
                     <!-- <label for="find-recipes-input" id="find-recipes" class="ml-10">Find Recipes:</label> -->
-                    <input type="text" name="find-recipes-input" id="find-recipes-input" placeholder="Find Recipes" class="p-1 text-black">
+                    <input type="text" name="find-recipes-input" id="find-recipes-input" placeholder="Find Recipes"
+                        class="p-1 text-black">
                     <input type="submit" class="hover:underline cursor-pointer" value="Search">
                 </form>
                 <a href="recipe-box.html">
-                <li id="my-recipes" class="hover:underline cursor-pointer">My Saved Recipes</li>
+                    <li id="my-recipes" class="hover:underline cursor-pointer">My Saved Recipes</li>
                 </a>
             </ul>
         </nav>
@@ -37,49 +39,56 @@
     <!-- Main -->
     <main id="main" class="sm:flex-row md:flex">
         <!-- Search section -->
-        <form id="search-form" class="sm:w-full md:w-1/4 border border-2 border-slate-600 rounded sm:mx-auto sm:my-2 md:m-2 p-2 text-center">
+        <form id="search-form"
+            class="sm:w-full md:w-1/4 border border-2 border-slate-600 rounded sm:mx-auto sm:my-2 md:m-2 p-2 text-center">
             <h4 class="text-center text-lg text-extrabold">Calculate Nutrition Information:</h4>
-            <textarea name="ingredients-search" id="ingredients-search" cols="30" rows="auto" class="rounded border border-slate-600 w-full p-2 sm:h-60 md:h-80" placeholder=
-"Type or paste ingredient list, with each ingredient on a new line.
+            <textarea name="ingredients-search" id="ingredients-search" cols="30" rows="auto"
+                class="rounded border border-slate-600 w-full p-2 sm:h-60 md:h-80" placeholder="Type or paste ingredient list, with each ingredient on a new line.
 
 1 cup rice,
 10 oz chickpeas"></textarea>
-            <button id="search-btn" class="text-white bg-green-900 rounded py-2 px-6 mt-2 w-full hover:underline hover:bg-green-700">Submit</button>
+            <button id="search-btn"
+                class="text-white bg-green-900 rounded py-2 px-6 mt-2 w-full hover:underline hover:bg-green-700">Submit</button>
         </form>
         <!-- Results section -->
-        <section id="results" class="sm:w-full md:w-1/4 border border-2 border-slate-600 rounded sm:mx-auto sm:my-2 md:m-2 p-2">
+        <section id="results"
+            class="sm:w-full md:w-1/4 border border-2 border-slate-600 rounded sm:mx-auto sm:my-2 md:m-2 p-2">
             <h4 class="text-center text-lg text-extrabold">Nutrition Breakdown:</h4>
             <section id="nutrition-results"></section>
-        </section>  
+        </section>
         <!-- Recipe suggestions section -->
-        <section id="recipe-list" class="sm:w-full md:w-1/2 border border-2 border-slate-600 rounded sm:mx-auto sm:my-2 md:m-2 p-2">
+        <section id="recipe-list"
+            class="sm:w-full md:w-1/2 border border-2 border-slate-600 rounded sm:mx-auto sm:my-2 md:m-2 p-2">
             <h4 class="text-center text-lg text-extrabold">Recipes you may enjoy:</h4>
         </section>
         <!-- hidden Add Recipe modal -->
         <div id="recipe-card-form" class="bg-slate-600 flex flex-col w-1/2 mt-20 ml-auto mr-auto p-3 hidden">
             <button id="close" class="float-right text-white">X</button>
-            <form id="recipe-card-form" >
-            <div class="row">
-                <label for="title-input" class="pb-2 text-white">Title</label>                 
-                </br>
-                <input type="text" name="title-input" id="title-input" placeholder="Recipe Title" class="rounded p-2 w-5/6">
+            <form id="recipe-card-form">
+                <div class="row">
+                    <label for="title-input" class="pb-2 text-white">Title</label>
+                    </br>
+                    <input type="text" name="title-input" id="title-input" placeholder="Recipe Title"
+                        class="rounded p-2 w-5/6">
+                    <br>
+                </div>
                 <br>
-            </div>
-            <br>
-            <div>
-                <label for="nutrition-info" class="pb-2 text-white">Nutrition Information</label>
+                <div>
+                    <label for="nutrition-info" class="pb-2 text-white">Nutrition Information</label>
+                    <br>
+                    <textarea name="nutrition-info" id="nutrition-info" cols="30" rows="auto"
+                        placeholder="Type or paste nutrition info here" class="rounded p-2 w-5/6"></textarea>
+                </div>
                 <br>
-                <textarea name="nutrition-info" id="nutrition-info" cols="30" rows="auto" placeholder="Type or paste nutrition info here" class="rounded p-2 w-5/6"></textarea>
-            </div>
-            <br>
-            <label for="recipe-url" class="pb-2 text-white">Link to Recipe</label>
-            <br>
-            <input type="text" id="recipe-url" class="rounded p-2 w-5/6">
-            <br><br>
-            <button id="save-button" class="text-white bg-green-700 rounded py-2 px-6 w-full">Save Recipe</button>
-        </form>
+                <label for="recipe-url" class="pb-2 text-white">Link to Recipe</label>
+                <br>
+                <input type="text" id="recipe-url" class="rounded p-2 w-5/6">
+                <br><br>
+                <button id="save-button" class="text-white bg-green-700 rounded py-2 px-6 w-full">Save Recipe</button>
+            </form>
         </div>
     </main>
     <script src="./assets/js/script.js"></script>
 </body>
+
 </html>
