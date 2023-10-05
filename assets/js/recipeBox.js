@@ -81,7 +81,7 @@ function printSavedRecipes() {
             var displayAnchor = document.createElement('a');
             displayAnchor.setAttribute('href',recipeURL);
             displayAnchor.setAttribute('target', '_blank');
-            recipeCard.setAttribute('class', 'border border-2 border-slate-600 rounded p-2');
+            recipeCard.setAttribute('class', 'border border-2 border-slate-600 rounded p-2 bg-white');
             recipeCard.appendChild(displayAnchor);
         
             var recipeName = recipeCardArray[i].title;
