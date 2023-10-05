@@ -84,7 +84,7 @@ function printSavedRecipes() {
             var displayName = document.createElement('h3');
             var linebreak = document.createElement('hr')
             displayName.textContent = recipeName;
-            displayName.setAttribute('class', 'font-extrabold leading-loose');
+            displayName.setAttribute('class', 'font-extrabold leading-loose hover:underline');
             displayAnchor.appendChild(displayName);
             recipeCard.appendChild(linebreak);
 
@@ -98,7 +98,7 @@ function printSavedRecipes() {
                 recipeCard.appendChild(displayNutri);
             });
 
-// delete button    
+            // delete button    
             var deleteButton = document.createElement('button');
             deleteButton.textContent = 'Discard Recipe';
             deleteButton.setAttribute('class','text-white text-sm bg-slate-600 hover:bg-slate-500 hover:underline rounded py-1 px-4 w-full');
