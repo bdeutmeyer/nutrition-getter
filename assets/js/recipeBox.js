@@ -13,8 +13,6 @@ var searchFormEl = document.getElementById('recipe-search');
 var searchQueryEl = document.querySelector("#find-recipes-input");
 var recipeCardArray = [];
 
-
-
 searchFormEl.addEventListener('submit', function (event) {
     event.preventDefault();
     event.stopPropagation();
@@ -65,7 +63,6 @@ function printSavedRecipes() {
             recipeCardArray = localRecipeArray;
         }
     }
-    console.log(recipeCardArray)
 
     //added clear container 
     recipeBoxContainerEl.innerHTML = '';
@@ -92,7 +89,6 @@ function printSavedRecipes() {
             displayAnchor.appendChild(displayName);
             recipeCard.appendChild(linebreak);
 
-            
             //added to split text on p element
             var recipeNutri = recipeCardArray[i].body;
             var paragraphs = recipeNutri.split('\n'); 
