@@ -11,7 +11,7 @@ var recipeUrl = document.getElementById('recipe-url');
 var recipeCardArray = [];
 
 
-//Listen for Find Recipes search and trigger search API
+//Listen for ingredient search submit and trigger API functions
 searchBtnEl.addEventListener('click', function (event) {
   event.preventDefault();
   var searchQueryIn = searchIngridientsEl.value;
@@ -19,8 +19,7 @@ searchBtnEl.addEventListener('click', function (event) {
   recipeSearch(searchQueryIn);
 });
 
-
-//Listen for ingredient search submit and trigger API functions
+//Listen for Find Recipes search and trigger search API
 searchFormEl.addEventListener('submit', function (event) {
   event.preventDefault();
   event.stopPropagation();
@@ -292,3 +291,11 @@ recipeCardForm.addEventListener('submit', function(event) {
 
   window.location.href = "./recipe-box.html"
 });
+
+  //Listens to page load, checks URL to see if there is a parameter containing searchRecipes, calls recipeSearch function if true
+  document.addEventListener("DOMContentLoaded", function () {
+    var urlParams = new URLSearchParams(window.location.search);
+    if (urlParams.has("searchRecipes") && urlParams.get("searchRecipes") === "true") {
+      recipeSearch(JSON.parse(localstorage.getItem('boxPageQuery')));
+    }
+  });

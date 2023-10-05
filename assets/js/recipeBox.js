@@ -7,8 +7,17 @@ var nutritionInfoEl = document.getElementById('nutrition-info');
 var recipeUrl = document.getElementById('recipe-url');
 var closeBtn = document.getElementById('close');
 var saveBtn = document.getElementById('save-button');
+var recipeSearchFormEl = document.getElementById('recipe-search');
+var findRecipesInput = document.getElementById('find-recipes-input');
 var recipeCardArray = [];
 
+//Listen for Find Recipes search, redirect to homepage, trigger search API
+recipeSearchFormEl.addEventListener('submit', function (event) {
+    event.preventDefault();
+    event.stopPropagation();
+    var findMoreRecipes = findRecipesInput.value;
+    localStorage.setItem('boxPageQuery', JSON.stringify(findMoreRecipes));
+  });
 
 modalTestBtn.onclick = function() {
     recipeCardForm.style.display = 'block';
