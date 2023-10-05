@@ -22,6 +22,8 @@ searchFormEl.addEventListener('submit', function (event) {
 
 modalTestBtn.onclick = function() {
     recipeCardForm.style.display = 'block';
+    recipeCardForm.style.position = 'fixed';
+    recipeCardForm.style.left = '25%';
 }
 
 closeBtn.onclick = function(event) {

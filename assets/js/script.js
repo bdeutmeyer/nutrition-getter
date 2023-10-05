@@ -255,6 +255,7 @@ function openModal(title,url,calories,carbs,protein,fat,sugar,chol,fiber,sodium)
 
   recipeCardForm.style.display = 'block';
   recipeCardForm.style.position = 'fixed';
+  recipeCardForm.style.left = '25%';
 }
 
 
