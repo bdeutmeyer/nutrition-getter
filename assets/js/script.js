@@ -296,6 +296,6 @@ recipeCardForm.addEventListener('submit', function(event) {
   document.addEventListener("DOMContentLoaded", function () {
     var urlParams = new URLSearchParams(window.location.search);
     if (urlParams.has("searchRecipes") && urlParams.get("searchRecipes") === "true") {
-      recipeSearch(JSON.parse(localstorage.getItem('boxPageQuery')));
+      recipeSearch(JSON.parse(localStorage.getItem('boxPageQuery')));
     }
   });

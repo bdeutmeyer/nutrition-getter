@@ -17,6 +17,7 @@ recipeSearchFormEl.addEventListener('submit', function (event) {
     event.stopPropagation();
     var findMoreRecipes = findRecipesInput.value;
     localStorage.setItem('boxPageQuery', JSON.stringify(findMoreRecipes));
+    window.location.href = './index.html?searchRecipes=true';
   });
 
 modalTestBtn.onclick = function() {
@@ -115,4 +116,3 @@ function printSavedRecipes() {
 
 //keeps displaying arrays 
 printSavedRecipes();
-
