@@ -9,19 +9,23 @@ var closeBtn = document.getElementById('close');
 var saveBtn = document.getElementById('save-button');
 var recipeSearchFormEl = document.getElementById('recipe-search');
 var findRecipesInput = document.getElementById('find-recipes-input');
+var searchFormEl = document.getElementById('recipe-search');
+var searchQueryEl = document.querySelector("#find-recipes-input");
 var recipeCardArray = [];
 
-//Listen for Find Recipes search, redirect to homepage, trigger search API
-recipeSearchFormEl.addEventListener('submit', function (event) {
+
+
+searchFormEl.addEventListener('submit', function (event) {
     event.preventDefault();
     event.stopPropagation();
-    var findMoreRecipes = findRecipesInput.value;
-    localStorage.setItem('boxPageQuery', JSON.stringify(findMoreRecipes));
-    window.location.href = './index.html?searchRecipes=true';
+    var searchQuery = searchQueryEl.value;
+    window.location.href = "./index.html?query="+searchQuery
   });
 
 modalTestBtn.onclick = function() {
     recipeCardForm.style.display = 'block';
+    recipeCardForm.style.position = 'fixed';
+    recipeCardForm.style.left = '25%';
 }
 
 closeBtn.onclick = function(event) {
