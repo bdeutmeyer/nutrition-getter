@@ -32,6 +32,18 @@ searchFormEl.addEventListener('submit', function (event) {
 //Function to query nutrition facts API
 function nutritionFacts(query) {
   if (query) {
+    resultsContainerEl.innerHTML = '';
+    var displayMacros = document.createElement('strong');
+    var linebreak = document.createElement('hr')
+    displayMacros.textContent = 'Nutrition Breakdown:'
+    displayMacros.setAttribute('class', 'font-extrabold text-lg');
+    resultsContainerEl.appendChild(displayMacros);
+    resultsContainerEl.appendChild(linebreak);
+
+    var loadingMessage = document.createElement('p');
+    loadingMessage.textContent = 'Results loading...';
+    resultsContainerEl.appendChild(loadingMessage);
+
     const url =
       "https://edamam-edamam-nutrition-analysis.p.rapidapi.com/api/nutrition-data?ingr=" +
       query +
@@ -68,6 +80,18 @@ function nutritionFacts(query) {
 
 //Function to query recipe search API
 function recipeSearch(query) {
+  recipeListEl.innerHTML = '';
+  var display = document.createElement('strong');
+  var linebreak = document.createElement('hr')
+  display.textContent = 'Recipes you may enjoy:'
+  display.setAttribute('class', 'font-extrabold text-lg');
+  recipeListEl.appendChild(display);
+  recipeListEl.appendChild(linebreak);
+
+  var loadingMessage = document.createElement('p');
+  loadingMessage.textContent = 'Results loading...';
+  recipeListEl.appendChild(loadingMessage);
+
   console.log(query)
   if (query) {
     const url =
