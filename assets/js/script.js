@@ -8,6 +8,7 @@ var recipeCardForm = document.getElementById('recipe-card-form');
 var titleInputEl = document.getElementById('title-input');
 var nutritionInfoEl = document.getElementById('nutrition-info');
 var recipeUrl = document.getElementById('recipe-url');
+var modalClose = document.getElementById('close');
 var recipeCardArray = [];
 
 
@@ -258,12 +259,16 @@ function openModal(title,url,calories,carbs,protein,fat,sugar,chol,fiber,sodium)
   recipeCardForm.style.left = '25%';
 }
 
+// Listen for modal close
+modalClose.addEventListener('click', function(event) {
+  event.stopPropagation();
+  recipeCardForm.style.display = 'none';
+})
 
 // Listen for Add Recipe modal submit-- add to local storage and load Recipe Box page
 recipeCardForm.addEventListener('submit', function(event) {
   event.preventDefault();
   event.stopPropagation();
-  console.log(event.target);
 
   //added if card form input empty return alert preventing empty output to display
   if (!titleInputEl.value || !nutritionInfoEl.value || !recipeUrl.value) {

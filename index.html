@@ -56,10 +56,11 @@
             <h4 class="text-center text-lg text-extrabold">Recipes you may enjoy:</h4>
         </section>
         <!-- hidden Add Recipe modal -->
-        <form id="recipe-card-form" class="bg-slate-600 flex flex-col w-1/2 mt-20 ml-auto mr-auto p-3 hidden">
+        <div id="recipe-card-form" class="bg-slate-600 flex flex-col w-1/2 mt-20 ml-auto mr-auto p-3 hidden">
+            <button id="close" class="float-right text-white">X</button>
+            <form id="recipe-card-form" >
             <div class="row">
                 <label for="title-input" class="pb-2 text-white">Title</label>                 
-                <button id="close" class="float-right text-white">X</button>
                 </br>
                 <input type="text" name="title-input" id="title-input" placeholder="Recipe Title" class="rounded p-2 w-5/6">
                 <br>
@@ -77,6 +78,7 @@
             <br><br>
             <button id="save-button" class="text-white bg-green-700 rounded py-2 px-6 w-full">Save Recipe</button>
         </form>
+        </div>
     </main>
     <script src="./assets/js/script.js"></script>
 </body>
