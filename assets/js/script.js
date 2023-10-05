@@ -152,21 +152,22 @@ function displayResults(data) {
   resultsContainerEl.appendChild(displaySodiumEl);
   console.log(resultsContainerEl);
 
-  // var saveNutriBtn = document.createElement('button');
-  // saveNutriBtn.textContent = 'Save Nutrition Info';
-  // saveNutriBtn.setAttribute('class', 'text-white bg-green-900 hover:bg-green-700 hover:underline rounded py-2 px-6 w-full');
-  // resultsContainerEl.appendChild(saveNutriBtn);
+  //Button to save nutrition information
+  var saveNutriBtn = document.createElement('button');
+  saveNutriBtn.textContent = 'Save Nutrition Info';
+  saveNutriBtn.setAttribute('class', 'text-white bg-green-900 hover:bg-green-700 hover:underline rounded py-2 px-6 w-full');
+  resultsContainerEl.appendChild(saveNutriBtn);
 
-  // saveNutriBtn.dataset.calories = Math.floor(data.hits.recipe.calories)
-  // saveNutriBtn.dataset.carbs = Math.floor(data.hits.recipe.totalNutrients.CHOCDF.quantity)
-  // saveNutriBtn.dataset.protein = Math.floor(data.hits.recipe.totalNutrients.PROCNT.quantity)
-  // saveNutriBtn.dataset.fat = Math.floor(data.hits.recipe.totalNutrients.FAT.quantity)
-  // saveNutriBtn.dataset.sugar = Math.floor(data.hits.recipe.totalNutrients.SUGAR.quantity)
-  // saveNutriBtn.dataset.chol = Math.floor(data.hits.recipe.totalNutrients.CHOLE.quantity)
-  // saveNutriBtn.dataset.fiber = Math.floor(data.hits.recipe.totalNutrients.FIBTG.quantity)
-  // saveNutriBtn.dataset.sodium = Math.floor(data.hits.recipe.totalNutrients.NA.quantity)
+  saveNutriBtn.dataset.calories = Math.floor(data.calories)
+  saveNutriBtn.dataset.carbs = Math.floor(data.totalNutrients.CHOCDF.quantity)
+  saveNutriBtn.dataset.protein = Math.floor(data.totalNutrients.PROCNT.quantity)
+  saveNutriBtn.dataset.fat = Math.floor(data.totalNutrients.FAT.quantity)
+  saveNutriBtn.dataset.sugar = Math.floor(data.totalNutrients.SUGAR.quantity)
+  saveNutriBtn.dataset.chol = Math.floor(data.totalNutrients.CHOLE.quantity)
+  saveNutriBtn.dataset.fiber = Math.floor(data.totalNutrients.FIBTG.quantity)
+  saveNutriBtn.dataset.sodium = Math.floor(data.totalNutrients.NA.quantity)
 
-  // saveNutriBtn.addEventListener('click', function() {openModal(event.target.dataset.calories,event.target.dataset.carbs,event.target.dataset.protein,event.target.dataset.fat,event.target.dataset.sugar,event.target.dataset.chol,event.target.dataset.fiber,event.target.dataset.sodium)})
+  saveNutriBtn.addEventListener('click', function() {openNutriModal(event.target.dataset.calories,event.target.dataset.carbs,event.target.dataset.protein,event.target.dataset.fat,event.target.dataset.sugar,event.target.dataset.chol,event.target.dataset.fiber,event.target.dataset.sodium)})
 }
 
 
@@ -235,8 +236,16 @@ function displayRecipes(data) {
   
 }
 
+// Open Add Recipe modal and pre-populate nutrition information field with data
+function openNutriModal(calories,carbs,protein,fat,sugar,chol,fiber,sodium) {
 
-// Open Add Recipe modal and pre-populate with data fields
+  console.log(('Calories: ' + calories + "\n" + 'Carbohydrates: ' + carbs + 'mg'))
+  nutritionInfoEl.value = ('Calories: ' + calories + "\n" + 'Carbohydrates: ' + carbs + 'mg' + "\n" + 'Protein: ' + protein + 'g' + "\n" + 'Fat: ' + fat + 'g' + "\n" + 'Sugar: ' + sugar + 'g' + "\n" + 'Cholesterol: ' + chol + 'mg' + "\n" + 'Fiber: ' + fiber + 'g' + "\n" + 'Sodium: ' + sodium + 'mg')
+
+  recipeCardForm.style.display = 'block';
+}
+
+// Open Add Recipe modal and pre-populate all fields with data
 function openModal(title,url,calories,carbs,protein,fat,sugar,chol,fiber,sodium) {
 
   console.log(('Calories: ' + calories + "\n" + 'Carbohydrates: ' + carbs + 'mg'))
