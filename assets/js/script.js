@@ -12,7 +12,7 @@ var modalClose = document.getElementById('close');
 var recipeCardArray = [];
 
 
-//Listen for Find Recipes search and trigger search API
+//Listen for ingredient search submit and trigger API functions
 searchBtnEl.addEventListener('click', function (event) {
   event.preventDefault();
   var searchQueryIn = searchIngridientsEl.value;
@@ -20,8 +20,7 @@ searchBtnEl.addEventListener('click', function (event) {
   recipeSearch(searchQueryIn);
 });
 
-
-//Listen for ingredient search submit and trigger API functions
+//Listen for Find Recipes search and trigger search API
 searchFormEl.addEventListener('submit', function (event) {
   event.preventDefault();
   event.stopPropagation();

@@ -7,6 +7,8 @@ var nutritionInfoEl = document.getElementById('nutrition-info');
 var recipeUrl = document.getElementById('recipe-url');
 var closeBtn = document.getElementById('close');
 var saveBtn = document.getElementById('save-button');
+var recipeSearchFormEl = document.getElementById('recipe-search');
+var findRecipesInput = document.getElementById('find-recipes-input');
 var searchFormEl = document.getElementById('recipe-search');
 var searchQueryEl = document.querySelector("#find-recipes-input");
 var recipeCardArray = [];
@@ -118,4 +120,3 @@ function printSavedRecipes() {
 
 //keeps displaying arrays 
 printSavedRecipes();
-
