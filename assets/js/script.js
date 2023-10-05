@@ -254,6 +254,8 @@ function openModal(title,url,calories,carbs,protein,fat,sugar,chol,fiber,sodium)
   nutritionInfoEl.value = ('Calories: ' + calories + "\n" + 'Carbohydrates: ' + carbs + 'mg' + "\n" + 'Protein: ' + protein + 'g' + "\n" + 'Fat: ' + fat + 'g' + "\n" + 'Sugar: ' + sugar + 'g' + "\n" + 'Cholesterol: ' + chol + 'mg' + "\n" + 'Fiber: ' + fiber + 'g' + "\n" + 'Sodium: ' + sodium + 'mg')
 
   recipeCardForm.style.display = 'block';
+  recipeCardForm.style.position = 'fixed';
+  recipeCardForm.style.left = '25%';
 }
 
 
@@ -261,6 +263,7 @@ function openModal(title,url,calories,carbs,protein,fat,sugar,chol,fiber,sodium)
 recipeCardForm.addEventListener('submit', function(event) {
   event.preventDefault();
   event.stopPropagation();
+  console.log(event.target);
 
   //added if card form input empty return alert preventing empty output to display
   if (!titleInputEl.value || !nutritionInfoEl.value || !recipeUrl.value) {
@@ -292,3 +295,13 @@ recipeCardForm.addEventListener('submit', function(event) {
 
   window.location.href = "./recipe-box.html"
 });
+
+
+//Listen for query parameters in URL upon page load and trigger recipe search
+let params = new URLSearchParams(document.location.search);
+let urlQuery = params.get("query");
+console.log(urlQuery);
+if (urlQuery !== null) {
+  searchQueryEl.value = urlQuery;
+  recipeSearch(urlQuery);
+}
