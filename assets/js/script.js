@@ -171,6 +171,13 @@ function displayResults(data) {
   saveNutriBtn.addEventListener('click', function() {openNutriModal(event.target.dataset.calories,event.target.dataset.carbs,event.target.dataset.protein,event.target.dataset.fat,event.target.dataset.sugar,event.target.dataset.chol,event.target.dataset.fiber,event.target.dataset.sodium)})
 }
 
+//Fisher Yates shuffle algorithm 
+function shuffleArray(arr){
+  for(i = arr.length - 1; i > 0; i--){
+    const j = Math.floor(Math.random()*(i + 1));
+    [arr[i], arr[j]] = [arr[j], arr[i]];
+  }
+}
 
 //Save top 5 recipes, print to screen and add Save Recipe buttons
 function displayRecipes(data) {
@@ -182,7 +189,9 @@ function displayRecipes(data) {
   recipeListEl.appendChild(display);
   recipeListEl.appendChild(linebreak);
 
-  for (var i=0; i<5; i++) {
+  shuffleArray(data.hits);
+
+  for (var i=0; i<5 && i < data.hits.length; i++) {
     var recipeCard = document.createElement('section');
     recipeCard.setAttribute('class', 'flex justify-between border border-slate-400 rounded m-2 p-2')
     recipeListEl.appendChild(recipeCard);
@@ -208,6 +217,7 @@ function displayRecipes(data) {
     var displaySource = document.createElement('a');
     displaySource.textContent = recipeSource;
     displaySource.setAttribute('href',data.hits[i].recipe.url);
+    displaySource.setAttribute('target', '_blank');
     displaySource.setAttribute('class', 'hover:underline');
     cardSection.appendChild(displaySource);
     recipeCard.appendChild(cardSection);
