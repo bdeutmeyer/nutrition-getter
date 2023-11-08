@@ -41,7 +41,7 @@ function nutritionFacts(query) {
     const options = {
       method: "GET",
       headers: {
-        "X-RapidAPI-Key": "1715b24a43msh9b5023d4aa71c9bp108651jsn692826a37b09",
+        "X-RapidAPI-Key": "d5008354a8msha2d005be96aae72p1d213fjsnbfcd97ee6792",
         "X-RapidAPI-Host": "edamam-edamam-nutrition-analysis.p.rapidapi.com",
       },
     };
